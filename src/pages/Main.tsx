@@ -10,7 +10,6 @@ import { useImageContext } from '../context/imageContext.tsx';
 import { useFetchFeedbackContext } from '../context/Actions/FetchFeedbackContext.tsx';
 import useFetchFeedback from '../actions/fetchFeedback.ts';
 import { getHealth } from '../api/index.ts';
-import { useProcessImageContext } from '../context/Actions/ProcessImageContext.tsx';
 
 const Main: React.FC = () => {
   const [serverUp, setServerUp] = useState(true);
@@ -21,8 +20,6 @@ const Main: React.FC = () => {
   
   const { fileError, image, imageError } = useImageContext();
   const { state } = useFetchFeedbackContext();
-
-  const f = useProcessImageContext().state
 
   const fetchFeedback = useFetchFeedback();
   const fetchFeedbackRef = useRef(fetchFeedback);
@@ -50,7 +47,7 @@ const Main: React.FC = () => {
   useEffect(() => {    
     checkHealth();
     
-    if (serverUpRef.current) fetchFeedbackRef.current(); console.log(f)
+    if (serverUpRef.current) fetchFeedbackRef.current();
   }, []);
 
   // generate error messages when errors are raised
